@@ -1,0 +1,27 @@
+.container{
+
+  &__top{
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  padding:0 30px;
+
+    .tweets_serach{
+      margin-top: 30px;
+      width:100%;
+      min-width:350px;
+
+      .search_field{
+        width:100%;
+        height:30px;
+        font-size: 100%;
+      }
+
+      .search_button{
+        width: 100%;
+        padding:0;
+        margin:0;
+      }
+    }
+  }
+}
