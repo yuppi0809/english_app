@@ -1,9 +1,32 @@
 <div class="container">
-<div class="container__top">
-  <div class="tweets_serach">
-    <input type= "text" class="search_field">
-    <input type="submit" class="search_button" value = "検索する"></button>
+  <div class="container__top">
+    <div class = "tabs">
+      <li class="tab">完全一致検索
+        <%= fa_icon "toggle-off", class: "toggle_icon" %>
+        <span class="on_off"> OFF </span>
+      </li>
+      <li class="tab">
+        クリア
+      </li>
+    </div>
+    <div class="tweets_serach">
+      <%=form_tag tweets_search_path, method: :get, class: "tweets_search_form" %>
+        <%=text_field_tag :keyword, nil, class: "search_field", placeholder: "調べたい英単語やフレーズを入力して下さい" %>
+        <%=submit_tag "検索する", class: "search_button" %>
+      </div>
   </div>
-</div>
-<div class="container__bottom"></div>
+  <div class="container__bottom">
+    <% if @tweets.present? %>
+      <div class = "title">
+        <p><strong><%= display_search_word(@keyword) %></strong> の検索結果</p>
+      </div>
+      <div class="search-results">
+        <% @tweets.each do |tweet| %>
+          <li>
+            <%= highlight(tweet.contents, modify_text_for_highlight(@keyword)) %>
+          </li>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
